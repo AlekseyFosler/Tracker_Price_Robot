@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "Tracker_Price_Robot"
+version = "0.1.0"
+description = ""
+authors = ["alexey.fosler@mail.ru"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiogram = "^3.13.0"
+pydantic-settings = "^2.4.0"
+
+[tool.poetry.group.dev.dependencies]
+blue = "^0.9.1"
+isort = "^5.13.2"
+mypy = "^1.10.1"
+pre-commit = "^3.7.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.blue]
+line-length = 120
+
+[tool.isort]
+line_length = 120
+multi_line_output = 9
+
+[tool.pytest.ini_options]
+#log_cli = true
+#log_cli_level = "INFO"
+#log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+#log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+addopts = "--disable-warnings"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
