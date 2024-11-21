@@ -12,7 +12,7 @@ async def main():
     dp = Dispatcher()
     dp.include_router(main_router)
 
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=settings.logging_level)
     bot = Bot(
         token=settings.bot_token,
         default=DefaultBotProperties(parse_mode=ParseMode.HTML),
@@ -21,4 +21,7 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logging.info('@Tracker_Price_Robot is Off')
