@@ -2,7 +2,8 @@ import logging
 
 from aiogram import Router, types
 from aiogram.filters import Command
-from parsers import WildberriesParser
+
+from src.bot.parsers import WildberriesParser
 
 router = Router(name=__name__)
 logger = logging.getLogger(__name__)
