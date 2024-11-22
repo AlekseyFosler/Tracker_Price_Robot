@@ -1,4 +1,4 @@
-from sqlalchemy import func
+from sqlalchemy import Result, func
 from sqlalchemy.dialects.postgresql import insert
 
 from src.bot.engines import Engine, Transaction
@@ -12,14 +12,28 @@ class UserRepository:
     ):
         self.transaction: Transaction = transaction
 
-    async def create_or_update_company(self, company_data: dict) -> User:
+    async def create_or_update(
+        self,
+        external_id: int,
+        full_name: str,
+    ) -> User:
         stmt = (
             insert(User)
-            .values(**company_data)
+            .values(
+                {
+                    User.external_id.name: external_id,
+                    User.full_name.name: full_name,
+                }
+            )
             .on_conflict_do_update(
                 index_elements=User.__table__.primary_key.columns,
-                set_={**company_data, User.updated_at: func.now()},
+                set_={
+                    User.external_id.name: external_id,
+                    User.full_name.name: full_name,
+                    User.updated_at: func.now(),
+                },
             )
             .returning(User)
         )
-        return await self.transaction.execute(stmt)
+        cursor: Result = await self.transaction.execute(stmt)
+        return cursor.scalar_one()

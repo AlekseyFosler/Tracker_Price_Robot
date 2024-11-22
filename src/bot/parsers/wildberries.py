@@ -29,7 +29,7 @@ class WildberriesParser:
             self.driver.implicitly_wait(10)
             # Ожидание появления элементов
             wait = WebDriverWait(self.driver, 50)
-            logger.info(self.driver.page_source)
+            # logger.info(self.driver.page_source)
 
             try:
                 price = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'price-block__final-price'))).text

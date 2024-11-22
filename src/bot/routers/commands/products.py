@@ -12,7 +12,7 @@ Wildberries_Parser = WildberriesParser()
 
 @router.message(Command('add'))
 async def handle_info(message: types.Message):
-    logger.debug(message.text)
+    # logger.debug(message.text)
     product = Wildberries_Parser.parse_product(message.text.replace('/add ', ''))
     logger.info(product)
     await message.answer(str(product))

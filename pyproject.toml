@@ -16,6 +16,7 @@ beautifulsoup4 = "^4.12.3"
 types-requests = "^2.32.0.20241016"
 sqlalchemy = "^2.0.36"
 backoff = "^2.2.1"
+asyncpg = "^0.30.0"
 
 [tool.poetry.group.dev.dependencies]
 blue = "^0.9.1"

@@ -7,11 +7,11 @@ from src.bot.models.base import Base
 class User(Base):
     __tablename__ = 'dictionaries'  # noqa
 
-    login: Mapped[str] = mapped_column(
+    external_id: Mapped[int] = mapped_column(
         VARCHAR,
         nullable=False,
     )
-    name: Mapped[str] = mapped_column(
+    full_name: Mapped[str] = mapped_column(
         VARCHAR,
         nullable=False,
     )
